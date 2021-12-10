@@ -1,1 +1,4 @@
 loop_interval: 3
+db:
+  host: localhost
+  port: 6379
