@@ -4,6 +4,7 @@ import os, os.path
 import redis
 import argparse
 import logging, logging.config
+from hashlib import md5
 
 argparser = argparse.ArgumentParser()
 argparser.add_argument("--data", type=str, required=True)
@@ -30,6 +31,10 @@ def set_root_segments(data_path, db_conn):
 def process_data_segment(data_root, data_path, db_conn):
     logging.debug("Processing data entry {}".format(data_path))
     data_entries = os.listdir(os.path.join(data_root, data_path))
+
+    key_hash = md5(data_path.encode('utf-8')).hexdigest()
+    db_conn.set(key_hash, data_path)
+
     if data_entries == ["_data"]:
         logging.debug("Saving data for entry {}".format(data_path))
         db_conn.set("{}:data".format(data_path),

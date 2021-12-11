@@ -1,4 +1,5 @@
 import logging
+from hashlib import md5
 
 import tg
 
@@ -14,10 +15,10 @@ def make_keyboard(sections):
     keyboard = []
 
     for section in sections:
-        section = section.decode('utf-8')
+        hash = md5(section).hexdigest()
         button = [{
-            'text': section,
-            'callback_data': '/next@{}'.format(section)
+            'text': section.decode('utf-8'),
+            'callback_data': '/next@{}'.format(hash)
         }]
         keyboard.append(button)
 

@@ -3,8 +3,8 @@ from . import callback_next, callback_prev
 
 def handle_callback(command, chat, message, db_conn, token):
     if command.startswith("/next"):
-        section = command.removeprefix("/next@")
-        callback_next.handle(section=section,
+        section_hash = command.removeprefix("/next@")
+        callback_next.handle(section_hash=section_hash,
                              chat=chat,
                              message=message,
                              db_conn=db_conn,

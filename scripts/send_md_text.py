@@ -17,7 +17,11 @@ def main():
     data = open(args.data).read()
 
     url = "https://api.telegram.org/bot{}/sendMessage".format(args.token)
-    request_body = {'chat_id': args.chat, 'text': data, 'parse_mode': 'Markdown'}
+    request_body = {
+        'chat_id': args.chat,
+        'text': data,
+        'parse_mode': 'Markdown'
+    }
 
     logging.debug("[TG.SEND_MESSAGE] BODY: {}".format(request_body))
     response = requests.post(url, json=request_body)
