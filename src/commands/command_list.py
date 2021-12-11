@@ -17,22 +17,22 @@ def make_keyboard(sections):
         section = section.decode('utf-8')
         button = [{
             'text': section,
-            'callback_data': '/next#{}'.format(section)
+            'callback_data': '/next@{}'.format(section)
         }]
         keyboard.append(button)
 
     action_buttons = [
         {
             'text': '\U0001f514',
-            'callback_data': '/subscribe#{}'.format('/root')
+            'callback_data': '/subscribe@{}'.format('/root')
         },
         {
             'text': '\U0001f515',
-            'callback_data': '/unsubscribe#{}'.format('/root')
+            'callback_data': '/unsubscribe@{}'.format('/root')
         },
         {
             'text': '\U0001f4e3',
-            'callback_data': '/proposal#{}'.format('/root')
+            'callback_data': '/proposal@{}'.format('/root')
         },
     ]
 

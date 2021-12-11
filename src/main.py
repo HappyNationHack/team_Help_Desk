@@ -42,12 +42,20 @@ def loop(config, token, db_conn):
                 if update_id >= offset:
                     offset = update_id + 1
 
-                msg = update['message']['text']
-                chat = update['message']['chat']['id']
-                handle_command(command=msg,
-                               chat=chat,
-                               db_conn=db_conn,
-                               token=token)
+                if 'message' in update:
+                    command = update['message']['text']
+                    chat = update['message']['chat']['id']
+                    handle_command(command=command,
+                                   chat=chat,
+                                   db_conn=db_conn,
+                                   token=token)
+                elif 'callback_query' in update:
+                    command = update['callback_query']['data']
+                    chat = update['callback_query']['message']['chat']['id']
+                    handle_command(command=command,
+                                   chat=chat,
+                                   db_conn=db_conn,
+                                   token=token)
 
 
 def load_config(config_path):

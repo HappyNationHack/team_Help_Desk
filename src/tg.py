@@ -5,7 +5,8 @@ import json
 
 def get_updates(token, offset):
     url = "https://api.telegram.org/bot{}/getUpdates".format(token)
-    params = {"offset": offset, "allowed_updates": json.dumps(["message"])}
+    allowed_updates = json.dumps(["message", "callback_query"])
+    params = {"offset": offset, "allowed_updates": allowed_updates}
     response = requests.get(url=url, params=params)
 
     if response.status_code == 200:
