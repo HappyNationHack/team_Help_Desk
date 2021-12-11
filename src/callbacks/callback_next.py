@@ -17,7 +17,7 @@ def handle(token, chat, message, db_conn, section):
                         text=data,
                         keyboard=keyboard)
     else:
-        next_sections = db_conn.smembers(section)
+        next_sections = db_conn.smembers('{}:next'.format(section))
         keyboard = make_keyboard(section, next_sections)
         tg.edit_message(token=token,
                         chat=chat,
