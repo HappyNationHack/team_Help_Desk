@@ -1,9 +1,12 @@
 import logging
+from hashlib import md5
 
 import tg
 
 
-def handle(token, chat, message, db_conn, section):
+def handle(token, chat, message, db_conn, section_hash):
+    section = db_conn.get(section_hash).decode('utf-8')
+
     logging.info("Processing /prev: (chat: {}, section: {})".format(
         chat, section))
 
@@ -42,32 +45,38 @@ def make_keyboard(current_section, prev_section, db_conn):
         if not prev_section == "/root":
             section_path = "{}/{}".format(prev_section, section)
 
+        section_path_hash = md5(section_path.encode('utf-8')).hexdigest()
+
         button = [{
             'text': section,
-            'callback_data': '/next@{}'.format(section_path)
+            'callback_data': '/next@{}'.format(section_path_hash)
         }]
         keyboard.append(button)
+
+    current_section_hash = md5(current_section.encode('utf-8')).hexdigest()
+    prev_section_hash = md5(prev_section.encode('utf-8')).hexdigest()
 
     action_buttons = [
         {
             'text': '\U0001f514',
-            'callback_data': '/subscribe@{}'.format(current_section)
+            'callback_data': '/subscribe@{}'.format(current_section_hash)
         },
         {
             'text': '\U0001f515',
-            'callback_data': '/unsubscribe@{}'.format(current_section)
+            'callback_data': '/unsubscribe@{}'.format(current_section_hash)
         },
         {
             'text': '\U0001f4e3',
-            'callback_data': '/proposal@{}'.format(current_section)
+            'callback_data': '/proposal@{}'.format(current_section_hash)
         },
     ]
 
     if not prev_section == "/root":
-        action_buttons.insert(0, {
-            'text': '\U00002b05',
-            'callback_data': '/prev@{}'.format(prev_section)
-        })
+        action_buttons.insert(
+            0, {
+                'text': '\U00002b05',
+                'callback_data': '/prev@{}'.format(prev_section_hash)
+            })
 
     keyboard.append(action_buttons)
 

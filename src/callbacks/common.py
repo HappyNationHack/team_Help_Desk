@@ -10,8 +10,8 @@ def handle_callback(command, chat, message, db_conn, token):
                              db_conn=db_conn,
                              token=token)
     if command.startswith("/prev"):
-        section = command.removeprefix("/prev@")
-        callback_prev.handle(section=section,
+        section_hash = command.removeprefix("/prev@")
+        callback_prev.handle(section_hash=section_hash,
                              chat=chat,
                              message=message,
                              db_conn=db_conn,
