@@ -7,6 +7,7 @@ import logging, logging.config
 
 import tg
 from commands.common import handle_command
+from callbacks.common import handle_callback
 
 argparser = argparse.ArgumentParser()
 argparser.add_argument("--config", type=str, required=True)
@@ -52,8 +53,10 @@ def loop(config, token, db_conn):
                 elif 'callback_query' in update:
                     command = update['callback_query']['data']
                     chat = update['callback_query']['message']['chat']['id']
-                    handle_command(command=command,
+                    message = update['callback_query']['message']['message_id']
+                    handle_callback(command=command,
                                    chat=chat,
+                                   message=message,
                                    db_conn=db_conn,
                                    token=token)
 
