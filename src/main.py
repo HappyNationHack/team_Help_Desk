@@ -55,10 +55,10 @@ def loop(config, token, db_conn):
                     chat = update['callback_query']['message']['chat']['id']
                     message = update['callback_query']['message']['message_id']
                     handle_callback(command=command,
-                                   chat=chat,
-                                   message=message,
-                                   db_conn=db_conn,
-                                   token=token)
+                                    chat=chat,
+                                    message=message,
+                                    db_conn=db_conn,
+                                    token=token)
 
 
 def load_config(config_path):
