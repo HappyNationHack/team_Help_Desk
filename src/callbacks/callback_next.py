@@ -35,10 +35,19 @@ def make_data_keyboard(current_section):
 
     current_section_hash = md5(current_section.encode('utf-8')).hexdigest()
 
+    discuss_button = [{
+        'text': 'Discuss',
+        'url': 'example.com'
+    }]
+
     action_buttons = [
         {
             'text': '\U00002b05',
             'callback_data': '/prev@{}'.format(current_section_hash)
+        },
+        {
+            'text': '\U0001f44d',
+            'callback_data': '/like@{}'.format(current_section_hash)
         },
         {
             'text': '\U0001f514',
@@ -49,11 +58,12 @@ def make_data_keyboard(current_section):
         #     'callback_data': '/unsubscribe@{}'.format(current_section_hash)
         # },
         {
-            'text': '\U0001f4e3',
-            'callback_data': '/proposal@{}'.format(current_section_hash)
+            'text': '\U0001f4dd',
+            'callback_data': '/edit@{}'.format(current_section_hash)
         },
     ]
 
+    keyboard.append(discuss_button)
     keyboard.append(action_buttons)
 
     return keyboard
@@ -89,8 +99,8 @@ def make_keyboard(current_section, next_sections):
         #     'callback_data': '/unsubscribe@{}'.format(current_section_hash)
         # },
         {
-            'text': '\U0001f4e3',
-            'callback_data': '/proposal@{}'.format(current_section_hash)
+            'text': '\U0001f4dd',
+            'callback_data': '/edit@{}'.format(current_section_hash)
         },
     ]
 

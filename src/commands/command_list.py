@@ -32,8 +32,8 @@ def make_keyboard(sections):
         #     'callback_data': '/unsubscribe@{}'.format('/root')
         # },
         {
-            'text': '\U0001f4e3',
-            'callback_data': '/proposal@{}'.format('/root')
+            'text': '\U0001f4dd',
+            'callback_data': '/edit@{}'.format('/root')
         },
     ]
 

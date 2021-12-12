@@ -21,6 +21,10 @@ def handle_callback(command, chat, message, callback, db_conn, token):
         tg.answer_callback(token=token,
                            callback=callback,
                            text='YOU ARE SUBSCRIBED')
+    if command.startswith("/like"):
+        tg.answer_callback(token=token,
+                           callback=callback,
+                           text='LIKED')
         # callback_prev.handle(section_hash=section_hash,
         #                      chat=chat,
         #                      message=message,
