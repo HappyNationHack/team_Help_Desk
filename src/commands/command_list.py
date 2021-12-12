@@ -8,7 +8,7 @@ def handle(token, chat, db_conn):
     logging.info("Processing /list: (chat: {})".format(chat))
     root_sections = db_conn.smembers("/root")
     keyboard = make_keyboard(root_sections)
-    tg.send_message(token=token, chat=chat, text="test", keyboard=keyboard)
+    tg.send_message(token=token, chat=chat, text="/root", keyboard=keyboard)
 
 
 def make_keyboard(sections):
