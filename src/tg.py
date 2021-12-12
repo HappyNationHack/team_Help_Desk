@@ -19,12 +19,14 @@ def get_updates(token, offset):
         logging.error("Telegram call failed: {}".format(response.reason))
 
 
-def send_message(token, chat, text, keyboard=None):
+def send_message(token, chat, text, keyboard=None, markdown=False):
     url = "https://api.telegram.org/bot{}/sendMessage".format(token)
     request_body = {'chat_id': chat, 'text': text}
     if keyboard:
         request_body['reply_markup'] = json.dumps(
             {'inline_keyboard': keyboard})
+    if markdown:
+        request_body['parse_mode'] = 'Markdown'
 
     logging.debug("[TG.SEND_MESSAGE] BODY: {}".format(request_body))
     response = requests.post(url, json=request_body)
@@ -37,12 +39,14 @@ def send_message(token, chat, text, keyboard=None):
             response.reason, response.json()))
 
 
-def edit_message(token, chat, message, text, keyboard=None):
+def edit_message(token, chat, message, text, keyboard=None, markdown=False):
     url = "https://api.telegram.org/bot{}/editMessageText".format(token)
     request_body = {'chat_id': chat, 'message_id': message, 'text': text}
     if keyboard:
         request_body['reply_markup'] = json.dumps(
             {'inline_keyboard': keyboard})
+    if markdown:
+        request_body['parse_mode'] = 'Markdown'
 
     logging.debug("[TG.SEND_MESSAGE] BODY: {}".format(request_body))
     response = requests.post(url, json=request_body)
@@ -53,6 +57,7 @@ def edit_message(token, chat, message, text, keyboard=None):
     else:
         logging.error("Telegram call failed: (reason: {}, details: {})".format(
             response.reason, response.json()))
+
 
 def answer_callback(token, callback, text=None):
     url = "https://api.telegram.org/bot{}/answerCallbackQuery".format(token)

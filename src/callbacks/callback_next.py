@@ -18,7 +18,8 @@ def handle(token, chat, message, db_conn, section_hash):
                         chat=chat,
                         message=message,
                         text=data,
-                        keyboard=keyboard)
+                        keyboard=keyboard,
+                        markdown=True)
     else:
         next_sections = db_conn.smembers('{}:next'.format(section))
         keyboard = make_keyboard(section, next_sections)
