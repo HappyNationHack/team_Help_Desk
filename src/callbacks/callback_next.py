@@ -43,10 +43,10 @@ def make_data_keyboard(current_section):
             'text': '\U0001f514',
             'callback_data': '/subscribe@{}'.format(current_section_hash)
         },
-        {
-            'text': '\U0001f515',
-            'callback_data': '/unsubscribe@{}'.format(current_section_hash)
-        },
+        # {
+        #     'text': '\U0001f515',
+        #     'callback_data': '/unsubscribe@{}'.format(current_section_hash)
+        # },
         {
             'text': '\U0001f4e3',
             'callback_data': '/proposal@{}'.format(current_section_hash)
@@ -83,10 +83,10 @@ def make_keyboard(current_section, next_sections):
             'text': '\U0001f514',
             'callback_data': '/subscribe@{}'.format(current_section_hash)
         },
-        {
-            'text': '\U0001f515',
-            'callback_data': '/unsubscribe@{}'.format(current_section_hash)
-        },
+        # {
+        #     'text': '\U0001f515',
+        #     'callback_data': '/unsubscribe@{}'.format(current_section_hash)
+        # },
         {
             'text': '\U0001f4e3',
             'callback_data': '/proposal@{}'.format(current_section_hash)

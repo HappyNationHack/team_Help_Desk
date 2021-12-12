@@ -61,10 +61,10 @@ def make_keyboard(current_section, prev_section, db_conn):
             'text': '\U0001f514',
             'callback_data': '/subscribe@{}'.format(current_section_hash)
         },
-        {
-            'text': '\U0001f515',
-            'callback_data': '/unsubscribe@{}'.format(current_section_hash)
-        },
+        # {
+        #     'text': '\U0001f515',
+        #     'callback_data': '/unsubscribe@{}'.format(current_section_hash)
+        # },
         {
             'text': '\U0001f4e3',
             'callback_data': '/proposal@{}'.format(current_section_hash)

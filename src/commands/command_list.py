@@ -27,10 +27,10 @@ def make_keyboard(sections):
             'text': '\U0001f514',
             'callback_data': '/subscribe@{}'.format('/root')
         },
-        {
-            'text': '\U0001f515',
-            'callback_data': '/unsubscribe@{}'.format('/root')
-        },
+        # {
+        #     'text': '\U0001f515',
+        #     'callback_data': '/unsubscribe@{}'.format('/root')
+        # },
         {
             'text': '\U0001f4e3',
             'callback_data': '/proposal@{}'.format('/root')

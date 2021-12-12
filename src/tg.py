@@ -53,3 +53,17 @@ def edit_message(token, chat, message, text, keyboard=None):
     else:
         logging.error("Telegram call failed: (reason: {}, details: {})".format(
             response.reason, response.json()))
+
+def answer_callback(token, callback, text=None):
+    url = "https://api.telegram.org/bot{}/answerCallbackQuery".format(token)
+    request_body = {'callback_query_id': callback, 'text': text}
+
+    logging.debug("[TG.NSWER_CALLBACK_QUERY] BODY: {}".format(request_body))
+    response = requests.post(url, json=request_body)
+    if response.status_code == 200:
+        response_body = response.json()
+        if not response_body['ok']:
+            logging.error("Telegram call failed: {}".format(response_body))
+    else:
+        logging.error("Telegram call failed: (reason: {}, details: {})".format(
+            response.reason, response.json()))

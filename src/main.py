@@ -54,8 +54,10 @@ def loop(config, token, db_conn):
                     command = update['callback_query']['data']
                     chat = update['callback_query']['message']['chat']['id']
                     message = update['callback_query']['message']['message_id']
+                    callback = update['callback_query']['id']
                     handle_callback(command=command,
                                     chat=chat,
+                                    callback=callback,
                                     message=message,
                                     db_conn=db_conn,
                                     token=token)
